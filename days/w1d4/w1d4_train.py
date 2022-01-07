@@ -105,7 +105,6 @@ class SGDHyperparameters:
 @gin.configurable
 def sgd_hyperparameter_search(hyperparameter_dict=gin.REQUIRED):
     l = make_grid(hyperparameter_dict)
-    gin.enter_interactive_mode()
 
     current_time = time.localtime()
     current_time = time.strftime("%H_%M_%S", current_time)
@@ -148,4 +147,9 @@ def sgd_hyperparameter_search(hyperparameter_dict=gin.REQUIRED):
 
             experiment.end()
 
-sgd_hyperparameter_search()
+
+if __name__ == "__main__":
+    print(os.environ.items())
+    # get env params
+    # get gin hyperparam dict from them
+    # call sgd_hyperparameter_search() with them
