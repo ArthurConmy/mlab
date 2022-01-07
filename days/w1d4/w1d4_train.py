@@ -153,10 +153,17 @@ if __name__ == "__main__":
     print(os.environ.items())
 
     PARAMS = os.getenv('PARAMS')
-    hyperparameter_dict = json.loads(PARAMS)
+    hyperparameter_dict = json.loads(PARAMS)["gin_config"]
+
+    lrs = hyperparameter_dict['lr']
+    momentums = hyperparameter_dict['momentum']
+
+    hyperparameter_dict = {
+        'lr': lrs,
+        'momentum': momentums
+    }
 
     print(hyperparameter_dict)
-    print(hyperparameter_dict['lr'])
     print(hyperparameter_dict['momentum'])
 
     sgd_hyperparameter_search(hyperparameter_dict)
