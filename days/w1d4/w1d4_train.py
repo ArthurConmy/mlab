@@ -103,8 +103,8 @@ class SGDHyperparameters:
         }
 
 @gin.configurable
-def sgd_hyperparameter_search(dict):
-    l = make_grid(dict)
+def sgd_hyperparameter_search(hyperparameter_dict):
+    l = make_grid(hyperparameter_dict)
     gin.enter_interactive_mode()
 
     current_time = time.localtime()
