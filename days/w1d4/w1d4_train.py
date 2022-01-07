@@ -124,7 +124,7 @@ def sgd_hyperparameter_search(hyperparameter_dict=gin.REQUIRED):
         experiment.log_parameter('momentum', d['momentum'])
 
         on = OurNet(2,400,3)
-        epochs = 5
+        epochs = 200
 
         train_losses = []
         test_losses = []            
