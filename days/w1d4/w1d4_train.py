@@ -155,6 +155,8 @@ if __name__ == "__main__":
     PARAMS = os.getenv('PARAMS')
     hyperparameter_dict = json.loads(PARAMS)["gin_config"]
 
+    print(hyperparameter_dict)
+
     lrs = hyperparameter_dict['lr']
     momentums = hyperparameter_dict['momentum']
 
