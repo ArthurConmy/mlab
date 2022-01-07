@@ -1,2 +1,4 @@
-train.lr = 0.001
-train.momentum = 0.9
+sgd_hyperparameter_search.dict = {
+"lr" : [0.001, 0.002, 0.003],
+"momentum" : [0.7, 0.8, 0.9]
+}
