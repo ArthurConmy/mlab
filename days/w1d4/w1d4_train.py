@@ -110,43 +110,43 @@ def sgd_hyperparameter_search(hyperparameter_dict=gin.REQUIRED):
     current_time = time.localtime()
     current_time = time.strftime("%H_%M_%S", current_time)
 
-    with gin.unlock_config():
-        gin.parse_config_file(config_file="config.gin")
+    # with gin.unlock_config():
+    #     gin.parse_config_file(config_file="config.gin")
 
-        for d in l:
-            experiment = Experiment(
-                api_key="xs16WsBDV0OjJyQ9XWoTyLJnU",
-                project_name=f"sgd_mlab_{current_time}",
-                workspace="dnlmy",
-            )
+    for d in l:
+        experiment = Experiment(
+            api_key="xs16WsBDV0OjJyQ9XWoTyLJnU",
+            project_name=f"sgd_mlab_{current_time}",
+            workspace="dnlmy",
+        )
 
-            experiment.log_parameter('lr', d['lr'])
-            experiment.log_parameter('momentum', d['momentum'])
+        experiment.log_parameter('lr', d['lr'])
+        experiment.log_parameter('momentum', d['momentum'])
 
-            on = OurNet(2,400,3)
-            epochs = 5
+        on = OurNet(2,400,3)
+        epochs = 5
 
-            train_losses = []
-            test_losses = []            
+        train_losses = []
+        test_losses = []            
 
-            for epoch in range(epochs):
+        for epoch in range(epochs):
 
-                experiment.set_epoch(epoch)
+            experiment.set_epoch(epoch)
 
-                print("epoch: ", epoch)
+            print("epoch: ", epoch)
 
-                train_loss = evaluate(on, data_train)
-                test_loss = evaluate(on, data_test)
+            train_loss = evaluate(on, data_train)
+            test_loss = evaluate(on, data_test)
 
-                experiment.log_metric('train_loss', train_loss)
-                experiment.log_metric('test_loss', test_loss)
+            experiment.log_metric('train_loss', train_loss)
+            experiment.log_metric('test_loss', test_loss)
 
-                train_losses.append(train_loss)
-                test_losses.append(test_loss)
+            train_losses.append(train_loss)
+            test_losses.append(test_loss)
 
-                on = train(on, data_test, lr = d["lr"], momentum = d["momentum"])
+            on = train(on, data_test, lr = d["lr"], momentum = d["momentum"])
 
-            experiment.end()
+        experiment.end()
 
 
 if __name__ == "__main__":
