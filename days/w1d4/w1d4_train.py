@@ -103,7 +103,7 @@ class SGDHyperparameters:
         }
 
 @gin.configurable
-def sgd_hyperparameter_search(hyperparameter_dict):
+def sgd_hyperparameter_search(hyperparameter_dict=gin.REQUIRED):
     l = make_grid(hyperparameter_dict)
     gin.enter_interactive_mode()
 
