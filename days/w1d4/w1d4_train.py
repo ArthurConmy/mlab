@@ -153,7 +153,9 @@ if __name__ == "__main__":
     print(os.environ.items())
 
     PARAMS = os.getenv('PARAMS')
-    hyperparameter_dict = json.loads(PARAMS)["gin_config"]
+    gin_config = json.loads(PARAMS)["gin_config"]
+    print(gin_config)
+    hyperparameter_dict = json.loads(gin_config)
 
     print(hyperparameter_dict)
 
