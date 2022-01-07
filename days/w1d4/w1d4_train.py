@@ -148,4 +148,4 @@ def sgd_hyperparameter_search(dict):
 
             experiment.end()
 
-sgd_hyperparameter_search(gin.REQUIRED)
+sgd_hyperparameter_search()
