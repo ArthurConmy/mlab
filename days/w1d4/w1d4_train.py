@@ -155,6 +155,10 @@ if __name__ == "__main__":
     PARAMS = os.getenv('PARAMS')
     hyperparameter_dict = json.loads(PARAMS)
 
+    print(hyperparameter_dict)
+    print(hyperparameter_dict['lr'])
+    print(hyperparameter_dict['momentum'])
+
     sgd_hyperparameter_search(hyperparameter_dict)
 
     # get env params
