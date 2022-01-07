@@ -12,6 +12,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 import gin
 import time
+import json
 
 fname = 'days/w1d4/small_moon.jpg'
 data_train, data_test =  w1d4_tests.load_image(fname)
@@ -150,6 +151,12 @@ def sgd_hyperparameter_search(hyperparameter_dict=gin.REQUIRED):
 
 if __name__ == "__main__":
     print(os.environ.items())
+
+    PARAMS = os.getenv('PARAMS')
+    hyperparameter_dict = json.loads(PARAMS)
+
+    sgd_hyperparameter_search(hyperparameter_dict)
+
     # get env params
     # get gin hyperparam dict from them
     # call sgd_hyperparameter_search() with them
