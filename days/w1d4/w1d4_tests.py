@@ -127,6 +127,8 @@ def test_sgd(SGD):
         _train_with_opt(model, opt)
         w0_correct = model.layers[0].weight
 
+        print('Theirs', w0_correct)
+
         torch.manual_seed(819)
         model = sol._MLP(2, 32, 2)
         opt = SGD(model.parameters(), **opt_config)

@@ -21,13 +21,18 @@ class Module:
 
     def train(self):
         "Set the mode of this module and all descendent modules to `train`."
-        # TODO: Implement for Task 0.4.
-        raise NotImplementedError('Need to implement for Task 0.4')
-
+        self.training = True
+        for child in self.modules():
+            child.training = True
+            child.train()
+            
     def eval(self):
         "Set the mode of this module and all descendent modules to `eval`."
         # TODO: Implement for Task 0.4.
-        raise NotImplementedError('Need to implement for Task 0.4')
+        self.training = False
+        for child in self.modules():
+            child.training = False
+            child.eval()
 
     def named_parameters(self):
         """
@@ -36,13 +41,35 @@ class Module:
         Returns:
             list of pairs: Contains the name and :class:`Parameter` of each ancestor parameter.
         """
-        # TODO: Implement for Task 0.4.
-        raise NotImplementedError('Need to implement for Task 0.4')
+        
+        res = []
+        def get_children(node, name):    
+            nonlocal res
+            pref = "" if  not name else name + "."
+            res += [(pref + n, p) for (n,p) in node._parameters.items()]
+            
+            for new_name, new_child in node._modules.items():
+                new_name = name + "." + new_name if name else new_name
+                get_children(new_child, new_name)
+        
+        get_children(self, "")
+        
+        return res
 
     def parameters(self):
         "Enumerate over all the parameters of this module and its descendents."
-        # TODO: Implement for Task 0.4.
-        raise NotImplementedError('Need to implement for Task 0.4')
+        
+        res = []
+        def get_children(node):    
+            nonlocal res
+            res += list(node._parameters.values())
+            
+            for new_child in node.modules():
+                get_children(new_child)
+        
+        get_children(self)
+        
+        return res
 
     def add_parameter(self, k, v):
         """
