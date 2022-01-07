@@ -13,7 +13,7 @@ import matplotlib.pyplot as plt
 import gin
 import time
 
-fname = 'small_moon.jpg'
+fname = 'days/w1d4/small_moon.jpg'
 data_train, data_test =  w1d4_tests.load_image(fname)
 
 class OurNet(nn.Module):
@@ -124,7 +124,7 @@ def sgd_hyperparameter_search(dict):
             experiment.log_parameter('momentum', d['momentum'])
 
             on = OurNet(2,400,3)
-            epochs = 25
+            epochs = 5
 
             train_losses = []
             test_losses = []            
