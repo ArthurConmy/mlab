@@ -1,7 +1,8 @@
 
 
-__global__ void zero(float *dest) { 
-    dest[threadIdx.x] = 0.f; 
+__global__ void zero(double *dest) {
+    double seventeen = 17;
+    dest[threadIdx.x] += seventeen;
 }
 
 

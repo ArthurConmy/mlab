@@ -4,5 +4,9 @@
   "remote.SSH.defaultExtensions": [
     "ms-python.python",
     "ms-toolsai.jupyter"
-  ]
+  ],
+  "files.associations": {
+    "*.gin": "python",
+    "sstream": "cpp"
+  }
 }
